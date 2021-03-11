@@ -3,14 +3,12 @@ import { EraserBrush } from './FabricExtensions/fabricEraserBrush'
 
 class Eraser extends FabricCanvasTool {
   configureCanvas(props) {
-    const eraserBrush = new EraserBrush(this._canvas);
-    eraserBrush.width = props.lineWidth || 10;
-    eraserBrush.color = "#ffffff";
-
-    this._canvas.freeDrawingBrush = eraserBrush;
     this._canvas.isDrawingMode = true;
+    this._canvas.freeDrawingBrush = new EraserBrush(this._canvas);
+    this._canvas.freeDrawingBrush.width = props.lineWidth || 10;
+    this._canvas.freeDrawingBrush.color = "#ffffff";
+
   }
 }
 
 export default Eraser;
-
