@@ -601,20 +601,19 @@ class SketchField extends PureComponent {
     img.src = dataUrl
   };
 
- addText = (text, options = {}, opts) => {
+ addText = (text, options = {}) => {
     let canvas = this._fc;
     let iText = new fabric.IText(text, options);
-    let position= {
-      left: opts && opts.left || (canvas.getWidth() - iText.width) * 0.5,
-      top: opts && opts.top|| (canvas.getHeight() - iText.height) * 0.5,
-    };
-    Object.assign(options, position);
     iText.set({
-      'left': options.left,
-      'top': options.top
+      'left': (canvas.getWidth() - iText.width) * 0.5,
+      'top':  (canvas.getHeight() - iText.height) * 0.5,
+      ...options
     });
 
     canvas.add(iText);
+    canvas.setActiveObject(iText);
+    iText.enterEditing()
+    iText.hiddenTextarea.focus();
   };
 
   callEvent = (e, eventFunction) => {
