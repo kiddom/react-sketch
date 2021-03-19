@@ -591,9 +591,10 @@ class SketchField extends PureComponent {
     let canvas = this._fc;
     let img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
-    const { stretched, stretchedX, stretchedY, ...fabricOptions } = options
+    const { stretched, stretchedX, stretchedY, isCentered, ...fabricOptions } = options
     img.onload = () => {
       const imgObj = new fabric.Image(img);
+      if (isCentered) imgObj.adjustPosition('center')
       if (stretched || stretchedX) imgObj.scaleToWidth(canvas.width)
       if (stretched || stretchedY) imgObj.scaleToHeight(canvas.height)
       canvas.setBackgroundImage(imgObj, () => canvas.renderAll(), fabricOptions)
@@ -601,6 +602,7 @@ class SketchField extends PureComponent {
     img.src = dataUrl
   };
 
+  /* options: http://fabricjs.com/docs/fabric.IText.html */
  addText = (text, options = {}) => {
     let canvas = this._fc;
     let iText = new fabric.IText(text, options);
