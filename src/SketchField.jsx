@@ -30,6 +30,10 @@ class SketchField extends PureComponent {
     lineColor: PropTypes.string,
     // The width of the line
     lineWidth: PropTypes.number,
+    // the color of the text
+    textColor: PropTypes.string,
+    // the size of the text
+    textWidth: PropTypes.number,
     // the fill color of the shape when applicable
     fillColor: PropTypes.string,
     // the background color of the sketch
@@ -88,6 +92,8 @@ class SketchField extends PureComponent {
   static defaultProps = {
     lineColor: 'black',
     lineWidth: 10,
+    textColor: 'red',
+    textSize: 16,
     fillColor: 'transparent',
     backgroundColor: 'transparent',
     opacity: 1.0,

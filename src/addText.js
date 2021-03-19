@@ -9,8 +9,8 @@ class Text extends FabricCanvasTool {
     let canvas = this._canvas;
     canvas.isDrawingMode = canvas.selection = false;
     canvas.forEachObject((o) => o.selectable = o.evented = false);
-    this._width = props.lineWidth;
-    this._color = props.lineColor;
+    this._size = props.textSize;
+    this._color = props.textColor;
   }
 
   doMouseDown(o) {
@@ -24,7 +24,7 @@ class Text extends FabricCanvasTool {
     });
     this.text.set({
       fill: this._color,
-      fontSize: this._width,
+      fontSize: this._size,
     })
     canvas.add(this.text);
     canvas.setActiveObject(this.text);
