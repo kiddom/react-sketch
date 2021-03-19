@@ -591,9 +591,10 @@ class SketchField extends PureComponent {
     let canvas = this._fc;
     let img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
-    const { stretched, stretchedX, stretchedY, ...fabricOptions } = options
+    const { stretched, stretchedX, stretchedY, isCentered, ...fabricOptions } = options
     img.onload = () => {
       const imgObj = new fabric.Image(img);
+      if (isCentered) imgObj.adjustPosition('center')
       if (stretched || stretchedX) imgObj.scaleToWidth(canvas.width)
       if (stretched || stretchedY) imgObj.scaleToHeight(canvas.height)
       canvas.setBackgroundImage(imgObj, () => canvas.renderAll(), fabricOptions)
@@ -601,20 +602,20 @@ class SketchField extends PureComponent {
     img.src = dataUrl
   };
 
- addText = (text, options = {}, opts) => {
+  /* options: http://fabricjs.com/docs/fabric.IText.html */
+ addText = (text, options = {}) => {
     let canvas = this._fc;
     let iText = new fabric.IText(text, options);
-    let position= {
-      left: opts && opts.left || (canvas.getWidth() - iText.width) * 0.5,
-      top: opts && opts.top|| (canvas.getHeight() - iText.height) * 0.5,
-    };
-    Object.assign(options, position);
     iText.set({
-      'left': options.left,
-      'top': options.top
+      'left': (canvas.getWidth() - iText.width) * 0.5,
+      'top':  (canvas.getHeight() - iText.height) * 0.5,
+      ...options
     });
 
     canvas.add(iText);
+    canvas.setActiveObject(iText);
+    iText.enterEditing()
+    iText.hiddenTextarea.focus();
   };
 
   callEvent = (e, eventFunction) => {
