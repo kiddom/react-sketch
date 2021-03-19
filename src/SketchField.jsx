@@ -10,6 +10,7 @@ import Line from './line';
 import Arrow from './arrow';
 import Rectangle from './rectangle';
 import Circle from './circle';
+import Text from './addText';
 import Pan from './pan';
 import Tool from './tools';
 import Highlighter from './highlighter';
@@ -119,6 +120,7 @@ class SketchField extends PureComponent {
     this._tools[Tool.Rectangle] = new Rectangle(fabricCanvas);
     this._tools[Tool.RectangleLabel] = new RectangleLabel(fabricCanvas);
     this._tools[Tool.Circle] = new Circle(fabricCanvas);
+    this._tools[Tool.Text] = new Text(fabricCanvas);
     this._tools[Tool.Pan] = new Pan(fabricCanvas);
     this._tools[Tool.Highlighter] = new Highlighter(fabricCanvas);
     this._tools[Tool.DefaultTool] = new DefaultTool(fabricCanvas);
@@ -601,6 +603,8 @@ class SketchField extends PureComponent {
     };
     img.src = dataUrl
   };
+
+
 
   /* options: http://fabricjs.com/docs/fabric.IText.html */
  addText = (text, options = {}) => {

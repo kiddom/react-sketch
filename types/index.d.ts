@@ -10,10 +10,12 @@ declare module 'react-sketch' {
 	    RectangleLabel: string;
 	    Select: string;
 	    Pan: string;
+		Text: string;
 	    DefaultTool: string;
 			Eraser: eraser;
 	} = {
 	    Circle: 'circle',
+		Text:'string',
 	    Line: 'line',
 	    Arrow: 'arrow',
 	    Pencil: 'pencil',
