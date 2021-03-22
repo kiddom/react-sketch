@@ -10,6 +10,7 @@ import Line from './line';
 import Arrow from './arrow';
 import Rectangle from './rectangle';
 import Circle from './circle';
+import Text from './addText';
 import Pan from './pan';
 import Tool from './tools';
 import Highlighter from './highlighter';
@@ -29,6 +30,10 @@ class SketchField extends PureComponent {
     lineColor: PropTypes.string,
     // The width of the line
     lineWidth: PropTypes.number,
+    // the color of the text
+    textColor: PropTypes.string,
+    // the size of the text
+    textSize: PropTypes.number,
     // the fill color of the shape when applicable
     fillColor: PropTypes.string,
     // the background color of the sketch
@@ -87,6 +92,8 @@ class SketchField extends PureComponent {
   static defaultProps = {
     lineColor: 'black',
     lineWidth: 10,
+    textColor: 'black',
+    textSize: 16,
     fillColor: 'transparent',
     backgroundColor: 'transparent',
     opacity: 1.0,
@@ -119,6 +126,7 @@ class SketchField extends PureComponent {
     this._tools[Tool.Rectangle] = new Rectangle(fabricCanvas);
     this._tools[Tool.RectangleLabel] = new RectangleLabel(fabricCanvas);
     this._tools[Tool.Circle] = new Circle(fabricCanvas);
+    this._tools[Tool.Text] = new Text(fabricCanvas);
     this._tools[Tool.Pan] = new Pan(fabricCanvas);
     this._tools[Tool.Highlighter] = new Highlighter(fabricCanvas);
     this._tools[Tool.DefaultTool] = new DefaultTool(fabricCanvas);
@@ -601,6 +609,8 @@ class SketchField extends PureComponent {
     };
     img.src = dataUrl
   };
+
+
 
   /* options: http://fabricjs.com/docs/fabric.IText.html */
  addText = (text, options = {}) => {

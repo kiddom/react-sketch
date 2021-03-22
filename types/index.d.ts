@@ -10,10 +10,12 @@ declare module 'react-sketch' {
 	    RectangleLabel: string;
 	    Select: string;
 	    Pan: string;
+		Text: string;
 	    DefaultTool: string;
-			Eraser: eraser;
+		Eraser: eraser;
 	} = {
 	    Circle: 'circle',
+		Text:'text',
 	    Line: 'line',
 	    Arrow: 'arrow',
 	    Pencil: 'pencil',
@@ -22,13 +24,17 @@ declare module 'react-sketch' {
 	    Select: 'select',
 	    Pan: 'pan',
 	    DefaultTool: 'default-tool',
-			Eraser: 'eraser'
+		Eraser: 'eraser'
 	}
 	export class SketchField extends React.PureComponent<{
 		// the color of the line
 		lineColor?: string
 		// The width of the line
 		lineWidth?: number
+		// the color of the text
+        textColor?: string,
+		// the size of the text
+		textSize?: number,
 		// the fill color of the shape when applicable
 		fillColor?: string
 		// the background color of the sketch
