@@ -33,7 +33,7 @@ class SketchField extends PureComponent {
     // the color of the text
     textColor: PropTypes.string,
     // the size of the text
-    textWidth: PropTypes.number,
+    textSize: PropTypes.number,
     // the fill color of the shape when applicable
     fillColor: PropTypes.string,
     // the background color of the sketch

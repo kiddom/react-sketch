@@ -32,9 +32,9 @@ declare module 'react-sketch' {
 		// The width of the line
 		lineWidth?: number
 		// the color of the text
-        textColor: PropTypes.string,
+        textColor?: string,
 		// the size of the text
-		textWidth: PropTypes.number,
+		textSize?: number,
 		// the fill color of the shape when applicable
 		fillColor?: string
 		// the background color of the sketch
