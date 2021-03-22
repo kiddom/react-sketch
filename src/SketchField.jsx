@@ -92,7 +92,7 @@ class SketchField extends PureComponent {
   static defaultProps = {
     lineColor: 'black',
     lineWidth: 10,
-    textColor: 'red',
+    textColor: 'black',
     textSize: 16,
     fillColor: 'transparent',
     backgroundColor: 'transparent',
