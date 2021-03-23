@@ -373,14 +373,7 @@ class SketchField extends PureComponent {
    */
   zoom = (factor) => {
     let canvas = this._fc;
-    let objects = canvas.getObjects();
-    for (let i in objects) {
-      objects[i].scaleX = objects[i].scaleX * factor;
-      objects[i].scaleY = objects[i].scaleY * factor;
-      objects[i].left = objects[i].left * factor;
-      objects[i].top = objects[i].top * factor;
-      objects[i].setCoords();
-    }
+    canvas.setZoom(canvas.getZoom()*factor);
     canvas.renderAll();
     canvas.calcOffset();
   };
