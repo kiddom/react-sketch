@@ -309,46 +309,27 @@ class SketchField extends PureComponent {
     onMouseUp(e);
   };
 
+  _zoomResize = () => {
+    let canvas = this._fc;
+    let { height, width } = this.props;
+    const zoomFactor = this.state.zoomFactor || 1
+    canvas.setWidth(width * zoomFactor + 'px', { cssOnly: true });
+    canvas.setHeight(height * zoomFactor + 'px', { cssOnly: true });
+    canvas.renderAll();
+    canvas.calcOffset();
+  }
+
   /**
    * Track the resize of the window and update our state
    *
-   * @param e the resize event
    * @private
    */
-  _resize = (e, canvasWidth = null, canvasHeight = null) => {
-    if (e) e.preventDefault();
-    let { widthCorrection, heightCorrection } = this.props;
+  _resize = () => {
+    let { height, width } = this.props;
     let canvas = this._fc;
-    let { offsetWidth, clientHeight } = this._container;
-    let prevWidth = canvasWidth || canvas.getWidth();
-    let prevHeight = canvasHeight || canvas.getHeight();
-    let wfactor = ((offsetWidth - widthCorrection) / prevWidth).toFixed(2);
-    let hfactor = ((clientHeight - heightCorrection) / prevHeight).toFixed(2);
-    canvas.setWidth(offsetWidth - widthCorrection);
-    canvas.setHeight(clientHeight - heightCorrection);
-    if (canvas.backgroundImage) {
-      // Need to scale background images as well
-      let bi = canvas.backgroundImage;
-      bi.width = bi.width * wfactor;
-      bi.height = bi.height * hfactor
-    }
-    let objects = canvas.getObjects();
-    for (let i in objects) {
-      let obj = objects[i];
-      let scaleX = obj.scaleX;
-      let scaleY = obj.scaleY;
-      let left = obj.left;
-      let top = obj.top;
-      let tempScaleX = scaleX * wfactor;
-      let tempScaleY = scaleY * hfactor;
-      let tempLeft = left * wfactor;
-      let tempTop = top * hfactor;
-      obj.scaleX = tempScaleX;
-      obj.scaleY = tempScaleY;
-      obj.left = tempLeft;
-      obj.top = tempTop;
-      obj.setCoords()
-    }
+    const zoomFactor = this.state.zoomFactor || 1
+    canvas.setWidth(width * zoomFactor);
+    canvas.setHeight(height * zoomFactor);
     canvas.renderAll();
     canvas.calcOffset();
   };
@@ -372,10 +353,9 @@ class SketchField extends PureComponent {
    * @param factor the zoom factor
    */
   zoom = (factor) => {
-    let canvas = this._fc;
-    canvas.setZoom(canvas.getZoom()*factor);
-    canvas.renderAll();
-    canvas.calcOffset();
+    this.setState({ zoomFactor: factor }, () => {
+      this._zoomResize()
+    })
   };
 
   /**
@@ -651,9 +631,6 @@ class SketchField extends PureComponent {
       selectedTool.configureCanvas(this.props);
     this._selectedTool = selectedTool;
 
-    // Control resize
-    window.addEventListener('resize', this._resize, false);
-
     // Initialize History, with maximum number of undo steps
     this._history = new History(undoSteps);
 
@@ -682,8 +659,6 @@ class SketchField extends PureComponent {
     (value || defaultValue) && this.fromJSON(value || defaultValue);
 
   };
-
-  componentWillUnmount = () => window.removeEventListener('resize', this._resize);
 
   componentDidUpdate = (prevProps, prevState) => {
     if (this.props.width !== prevProps.width
@@ -719,9 +694,12 @@ class SketchField extends PureComponent {
       height
     } = this.props;
 
+    const zoomFactor = this.state.zoomFactor || 1
+
     let canvasDivStyle = Object.assign({}, style ? style : {},
-      width ? { width: width } : {},
-      height ? { height: height } : { height: 512 });
+      width ? { width: width * zoomFactor } : {},
+      height ? { height: height * zoomFactor } : { height: 512 });
+
     return (
       <div
         className={className}
@@ -729,7 +707,8 @@ class SketchField extends PureComponent {
         style={canvasDivStyle}>
         <canvas
           id={uuid4()}
-          ref={(c) => this._canvas = c}>
+          ref={(c) => this._canvas = c}
+          style={{canvasDivStyle}}>
           Sorry, Canvas HTML5 element is not supported by your browser
           :(
         </canvas>
