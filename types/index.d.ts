@@ -88,7 +88,7 @@ declare module '@kiddom/react-sketch' {
 		 *   scale: <Number: initial scale of image>
 		 * }
 		 */
-		addImg(dataUrl: string, options?: { left?: number, top?: number, scale?: number, options?: object }): void
+		addImg(dataUrl: string, options?: { left?: number, top?: number, scale?: number, crossOrigin?: string }): void
 
 		/**
 		 * Zoom the drawing by the factor specified
