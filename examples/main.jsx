@@ -630,7 +630,6 @@ class SketchFieldDemo extends React.Component {
                     <Button
                       variant="outlined"
                       onClick={(e) => {
-                        //Setting options to relax crossOrigin requirements for student preview of s3 resources
                         this._sketch.addImg(this.state.imageUrl, { crossOrigin: '*' })
                       }}>
                       Load Image from URL
@@ -639,7 +638,6 @@ class SketchFieldDemo extends React.Component {
                   <br/>
                   <Button
                     variant="outlined"
-                    //Setting options to relax crossOrigin requirements for student preview of s3 resources
                     onClick={(e) => this._sketch.addImg(dataUrl, { crossOrigin: '*' })}>
                     Load Image from Data URL
                   </Button>
