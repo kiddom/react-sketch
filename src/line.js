@@ -12,6 +12,7 @@ class Line extends FabricCanvasTool {
     canvas.forEachObject((o) => o.selectable = o.evented = false);
     this._width = props.lineWidth;
     this._color = props.lineColor;
+    canvas.defaultCursor = 'crosshair';
   }
 
   doMouseDown(o) {
