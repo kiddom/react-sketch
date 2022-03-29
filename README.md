@@ -93,6 +93,17 @@ npm start
 and navigate to http://localhost:23000
 
 You can as well check the live showcase here: http://tbolis.github.io/showcase/react-sketch/
+
+## Updating your published package version number
+1. To change the version number in package.json, on the command line, in the package root directory, run the following command, replacing <update_type> with one of the semantic versioning release types (patch, major, or minor):
+
+2. npm version <update_type>
+`Run npm publish.`
+
+3. Go to your package page (https://npmjs.com/package/<package>) to check that the package version has been updated.
+
+See https://docs.npmjs.com/updating-your-published-package-version-number
+
                                          
 ## Issues
 
