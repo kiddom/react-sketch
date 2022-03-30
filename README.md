@@ -42,7 +42,10 @@ class SketchFieldDemo extends React.Component {
                          height='768px' 
                          tool={Tools.Pencil} 
                          lineColor='black'
-                         lineWidth={3}/>
+                         lineWidth={3}
+                         highlightColor = 'yellow'
+                         highlightWidth = {3}
+                         />
         )
      }
 }
@@ -54,7 +57,9 @@ Configuration Options
 |---                |---    	            |---	        |---                                                                |
 | tool              | Enumeration (string)  | pencil        | The tool to use, can be select, pencil, circle, rectangle, pan    |
 | lineColor         | String                | black         | The color of the line   	                                        |
-| lineWidth         | Number                | 1             | The width of the line                                             | 
+| lineWidth         | Number                | 1             | The width of the line 
+| highlightColor         | String                | yellow         | The color of the line   	                                        |
+| highlightWidth         | Number                | 1             | The width of the line                                            | 
 | fillColor         | String                | transparent   | The fill color (hex format) of the shape when applicable (e.g. circle) |
 | backgroundColor   | String                | transparent   | The the background color of the sketch in hex or rgba             |
 | undoSteps         | Number                | 15            | number of undo/redo steps to maintain                             |
@@ -76,7 +81,8 @@ Available tools
 | Rectangle         | Create rectangles |
 | Circle            | Create circles |
 | Rectangle         | Create Rectangles |
-| Select            | Disables drawing and gives you the ability to modify existing elements in the canvas |
+| Select            | Disables drawing and gives you the ability to modify existing elements in the canvas
+| Highlighter       | Highlight drawing  |
 | Pan               | Disables drawing and gives you the ability to move the complete canvas at will, useful to adjust the canvas when zooming in or out (thank you [wmaillard](https://github.com/wmaillard)) |
 
 

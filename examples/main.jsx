@@ -117,6 +117,8 @@ class SketchFieldDemo extends React.Component {
     this.state = {
       lineWidth: 10,
       lineColor: 'black',
+      highlighterColor: 'yellow',
+      highlighterWidth: 10,
       fillColor: '#68CCCA',
       backgroundColor: 'transparent',
       shadowWidth: 0,
@@ -346,6 +348,8 @@ class SketchFieldDemo extends React.Component {
               ref={c => (this._sketch = c)}
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
+              highlighterColor={this.state.highlighterColor}
+              highlighterWidth={this.state.highlighterWidth}
               fillColor={
                 this.state.fillWithColor
                   ? this.state.fillColor
@@ -527,7 +531,7 @@ class SketchFieldDemo extends React.Component {
                   <br/>
                   <CompactPicker
                     id='lineColor' color={this.state.lineColor}
-                    onChange={(color) => this.setState({ lineColor: color.hex })}/>
+                    onChange={(color) => this.setState({ lineColor: color.hex, highlighterColor: color.hex })}/>
                   <br/>
                   <br/>
                   <FormControlLabel
@@ -541,6 +545,14 @@ class SketchFieldDemo extends React.Component {
                   <CompactPicker
                     color={this.state.fillColor}
                     onChange={(color) => this.setState({ fillColor: color.hex })}/>
+                  <br />
+                  <br />
+                  <label htmlFor='highlightColor'>Highlighter</label>
+                  <br />
+                  <CompactPicker
+                    id='lineColor' color={this.state.highlighterColor}
+                    onChange={(color) => this.setState({ highlighterColor: color.hex })} />
+                  <br />
                 </CardContent>
               </Collapse>
             </Card>
