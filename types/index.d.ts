@@ -31,12 +31,12 @@ declare module '@kiddom/react-sketch' {
 		lineWidth?: number
 		// the color of the highlighter line
 		highligherColor?: string
-		//the width of the highlighter line
+		// the width of the highlighter line
 		highlighterWidth?:number
 		// the color of the text
-		textColor?: PropTypes.string
+		textColor: PropTypes.string,
 		// the size of the text
-		textSize?: PropTypes.number
+		textSize: PropTypes.number,
 		// the fill color of the shape when applicable
 		fillColor?: string
 		// the background color of the sketch

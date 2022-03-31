@@ -531,7 +531,7 @@ class SketchFieldDemo extends React.Component {
                   <br/>
                   <CompactPicker
                     id='lineColor' color={this.state.lineColor}
-                    onChange={(color) => this.setState({ lineColor: color.hex, highlighterColor: color.hex })}/>
+                    onChange={(color) => this.setState({ lineColor: color.hex })}/>
                   <br/>
                   <br/>
                   <FormControlLabel
