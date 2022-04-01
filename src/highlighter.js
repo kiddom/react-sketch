@@ -6,8 +6,8 @@ class Highlighter extends FabricCanvasTool {
 
   configureCanvas(props) {
     this._canvas.isDrawingMode = true;
-    this._canvas.freeDrawingBrush.width = props.lineWidth;
-    this._canvas.freeDrawingBrush.color = props.lineColor.indexOf('#') > -1 ? hexToRgbA(props.lineColor) : hexToRgbA(colorNameToHex(props.lineColor));
+    this._canvas.freeDrawingBrush.width = props.highlighterWidth;
+    this._canvas.freeDrawingBrush.color = props.highlighterColor.indexOf('#') > -1 ? hexToRgbA(props.highlighterColor) : hexToRgbA(colorNameToHex(props.highlighterColor));
   }
 }
 
