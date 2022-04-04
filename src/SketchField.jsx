@@ -30,7 +30,7 @@ class SketchField extends PureComponent {
     // The width of the line
     lineWidth: PropTypes.number,
     // the color of the highlighter line
-    highligherColor: PropTypes.string,
+    highlighterColor: PropTypes.string,
 		//the width of the highlighter line
     highlighterWidth: PropTypes.number,
     // the color of the text
@@ -95,8 +95,8 @@ class SketchField extends PureComponent {
   static defaultProps = {
     lineColor: 'black',
     lineWidth: 10,
-    highligherColor: 'yellow',
-    highligherWidth: 10,
+    highlighterColor: '#F6CA2A',
+    highlighterWidth: 10,
     textColor: 'black',
     textSize: 16,
     fillColor: 'transparent',
