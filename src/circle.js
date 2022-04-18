@@ -49,7 +49,7 @@ class Circle extends FabricCanvasTool {
   doMouseUp(o) {
     let canvas = this._canvas
     this.isDown = false;
-    canvas.trigger("object:modified", { target: this.line });
+    canvas.trigger("object:modified", { target: this.circle });
   }
 }
 
