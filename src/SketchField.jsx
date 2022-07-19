@@ -614,7 +614,7 @@ class SketchField extends PureComponent {
       }
     }
 
-    imgLoadFunc((dataUrl), (imgObj) => {
+    imgLoadFunc(dataUrl, (imgObj) => {
       if (stretched || stretchedX) imgObj.scaleToWidth(canvas.width)
       if (stretched || stretchedY) imgObj.scaleToHeight(canvas.height)
       canvas.setBackgroundImage(imgObj, () => canvas.renderAll(), fabricOptions)
