@@ -601,16 +601,24 @@ class SketchField extends PureComponent {
    */
   setBackgroundFromDataUrl = (dataUrl, options = {}) => {
     let canvas = this._fc;
-    let img = new Image();
-    img.setAttribute('crossOrigin', 'anonymous');
+
     const { stretched, stretchedX, stretchedY, ...fabricOptions } = options
-    img.onload = () => {
-      const imgObj = new fabric.Image(img);
+    let imgLoadFunc = fabric.Image.fromURL
+    if (dataUrl.endsWith('.svg') || dataUrl.includes('.svg?')) {
+      // SVGs are a bunch of components, we need to group them and add that group as the background
+      imgLoadFunc = (dataUrl, imgFunc) => {
+        fabric.loadSVGFromURL(dataUrl, (objs, opts) => {
+          const imgObj = fabric.util.groupSVGElements(objs, opts)
+          imgFunc(imgObj)
+        })
+      }
+    }
+
+    imgLoadFunc((dataUrl), (imgObj) => {
       if (stretched || stretchedX) imgObj.scaleToWidth(canvas.width)
       if (stretched || stretchedY) imgObj.scaleToHeight(canvas.height)
       canvas.setBackgroundImage(imgObj, () => canvas.renderAll(), fabricOptions)
-    };
-    img.src = dataUrl
+    })
   };
 
   addText = (text, options = {}) => {
