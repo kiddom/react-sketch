@@ -105,6 +105,7 @@ You can as well check the live showcase here: http://tbolis.github.io/showcase/r
 
 2. npm version <update_type>
 `Run npm publish.`
+`git push --tags`
 
 3. Go to your package page (https://npmjs.com/package/<package>) to check that the package version has been updated.
 
