@@ -1,10 +1,15 @@
-/* global expect, describe,it */
+/* global expect, describe, it, afterEach */
 /* eslint no-console: 0 */
 /* eslint-env node */
 
-import React from 'react';
-import {mount} from 'enzyme';
+import React, { createRef } from 'react';
+import { render, cleanup } from '@testing-library/react';
 import SketchField from '../src/SketchField';
+
+// Ensure cleanup after each test to prevent memory leaks
+afterEach(() => {
+  cleanup();
+});
 
 function objectFromDrag(canvas, from = { x: 0, y: 0 }, to = { x: 10, y: 10 }, id) {
   function MouseEventPositionGenerator(pos = { x: 0, y: 0 }) {
@@ -26,19 +31,26 @@ function objectFromDrag(canvas, from = { x: 0, y: 0 }, to = { x: 10, y: 10 }, id
   return newObj;
 }
 
+// Wrapper component to expose SketchField instance via ref
+const SketchFieldWithRef = React.forwardRef((props, ref) => (
+  <SketchField ref={ref} {...props} />
+));
+
 describe('SketchField', () => {
   it('Loads Normally', () => {
     require('../src/SketchField');
   });
 
   it('Contains canvas tag', () => {
-    const sketch = mount(<SketchField/>);
-    expect(sketch.getDOMNode('canvas')).toBeDefined();
+    const { container } = render(<SketchField />);
+    expect(container.querySelector('canvas')).toBeInTheDocument();
   });
 
   it('Drag to create rectangle', () => {
-    const sketch = mount(<SketchField tool="rectangle"/>);
-    const canvas = sketch.instance()._fc;
+    const ref = createRef();
+    render(<SketchFieldWithRef ref={ref} tool="rectangle" />);
+    const sketch = ref.current;
+    const canvas = sketch._fc;
     expect(canvas).toBeDefined();
 
     const startPt = { x: 10, y: 10 };
@@ -82,7 +94,9 @@ describe('SketchField', () => {
   });
 
   it('Undo/Redo for multiple rectangles add to canvas', () => {
-    const sketch = mount(<SketchField tool="rectangle"/>).instance();
+    const ref = createRef();
+    render(<SketchFieldWithRef ref={ref} tool="rectangle" />);
+    const sketch = ref.current;
     const canvas = sketch._fc;
     expect(canvas).toBeDefined();
 
@@ -111,7 +125,9 @@ describe('SketchField', () => {
   });
 
   it('Undo/Redo for multiple modification for single rectangle', () => {
-    const sketch = mount(<SketchField tool="rectangle"/>).instance();
+    const ref = createRef();
+    render(<SketchFieldWithRef ref={ref} tool="rectangle" />);
+    const sketch = ref.current;
     const canvas = sketch._fc;
     expect(canvas).toBeDefined();
 
@@ -173,7 +189,9 @@ describe('SketchField', () => {
   });
 
   it('Removes selected object', () => {
-    const sketch = mount(<SketchField tool="rectangle"/>).instance();
+    const ref = createRef();
+    render(<SketchFieldWithRef ref={ref} tool="rectangle" />);
+    const sketch = ref.current;
     const canvas = sketch._fc;
     expect(canvas).toBeDefined();
 
@@ -193,7 +211,9 @@ describe('SketchField', () => {
   });
 
   it('Copy/Paste selected object', () => {
-    const sketch = mount(<SketchField tool="rectangle"/>).instance();
+    const ref = createRef();
+    render(<SketchFieldWithRef ref={ref} tool="rectangle" />);
+    const sketch = ref.current;
     const canvas = sketch._fc;
     expect(canvas).toBeDefined();
 

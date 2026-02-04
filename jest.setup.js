@@ -1,9 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies, no-multi-assign, no-undef */
+/* eslint-disable import/no-extraneous-dependencies */
 import 'jest-canvas-mock';
-import 'jest-enzyme';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import '@testing-library/jest-dom';
