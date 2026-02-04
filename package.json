@@ -17,6 +17,9 @@
     "type": "git",
     "url": "https://github.com/kiddom/react-sketch.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "main": "./dist",
   "types": "./types/index.d.ts",
