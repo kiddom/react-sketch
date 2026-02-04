@@ -21,9 +21,9 @@ function objectFromDrag(canvas, from = { x: 0, y: 0 }, to = { x: 10, y: 10 }, id
     return generated;
   }
 
-  canvas.trigger('mouse:down', { e: MouseEventPositionGenerator(from) });
-  canvas.trigger('mouse:move', { e: MouseEventPositionGenerator(to) });
-  canvas.trigger('mouse:up', { e: MouseEventPositionGenerator(to) });
+  canvas.fire('mouse:down', { e: MouseEventPositionGenerator(from) });
+  canvas.fire('mouse:move', { e: MouseEventPositionGenerator(to) });
+  canvas.fire('mouse:up', { e: MouseEventPositionGenerator(to) });
   // Get the last object as the last created object
   const objects = canvas.getObjects();
   const newObj = objects[objects.length - 1];
@@ -142,13 +142,13 @@ describe('SketchField', () => {
     // [Action2] Change rectangle dimension and save its state
     rect.set({ width: 50, height: 60 });
     rect.setCoords();
-    canvas.trigger('object:modified', { target: rect });
+    canvas.fire('object:modified', { target: rect });
     stateStack.push(rect.toJSON());
 
     // [Action3] Change the position and save its state
     rect.set({ left: 20, top: 70 });
     rect.setCoords();
-    canvas.trigger('object:modified', { target: rect });
+    canvas.fire('object:modified', { target: rect });
     stateStack.push(rect.toJSON());
 
     // Undo Action3

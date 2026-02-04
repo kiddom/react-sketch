@@ -31,7 +31,6 @@
     "prepublish": "npm run build",
     "prebuild": "rimraf dist",
     "start": "node webpack/server.js",
-    "start:debug": "weinre --boundHost `my-local-ip` ",
     "test": "jest --coverage"
   },
   "engines": {
@@ -127,11 +126,10 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.47.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3",
-    "weinre": "^2.0.0-pre-I0Z7U9OV"
+    "webpack-dev-server": "^3.11.3"
   },
   "dependencies": {
-    "fabric": "^3.6.6",
+    "fabric": "^5.5.2",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
