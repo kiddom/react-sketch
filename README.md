@@ -7,7 +7,7 @@
 
 A Sketch tool for React based applications, backed-up by [FabricJS](http://fabricjs.com/)
 
-![idea-image] _Please note that this module is still in development! Feel free to send me enhancements and ideas :)_
+💡 _Please note that this module is still in development! Feel free to send me enhancements and ideas :)_
 
 
 ## Installation
@@ -124,8 +124,6 @@ See https://github.com/tbolis/react-sketch/blob/master/CHANGELOG.md
 
 MIT, do remember to add a reference if you find it useful :)
 
-[warning-image]: /docs/img/warning.png
-[idea-image]: /docs/img/idea.png
 [github-image]: https://img.shields.io/github/release/tbolis/react-sketch.svg
 [github-url]: https://github.com/tbolis/react-sketch/releases
 [npm-image]: https://img.shields.io/npm/v/react-sketch.svg
